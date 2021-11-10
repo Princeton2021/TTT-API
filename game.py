@@ -4,7 +4,7 @@ from player import Player
 
 class Game:
   
-  def __init__(self, game_id, size, name1, name2, result=None, game_history=[]):
+  def __init__(self, game_id, size, name1, name2, result=None):
 
     #initialize the players and the game board
     self.game_id = game_id

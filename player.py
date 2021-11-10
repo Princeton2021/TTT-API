@@ -5,7 +5,7 @@ class Player:
   def __init__(self, name, symbol, value ):
 
     #symbol = 'x' or 'o' 
-    #value = 1 or 0  #to fill in the square in the game board
+    #value = 1 or 0  #to fill in the square in the game board dataframe
     
     self.player = name
     self.symbol = symbol
