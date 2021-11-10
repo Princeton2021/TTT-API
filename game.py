@@ -25,12 +25,12 @@ class Game:
 
   def check_gameBoard(self, df):
     
-    row_sum = Utility().row_or_col_sum(df, axis_option=1)
-
-    #check the result
-    
+    row_sum = Utility().row_or_col_sum(df, axis_option=1) 
     col_sum = Utility().row_or_col_sum(df, axis_option=0)
     dia_sum = Utility().diagonal_sum(df)
+    all = [row_sum, col_sum, dia_sum]
+
+    for i in 
 
     
 
