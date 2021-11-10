@@ -2,6 +2,8 @@
 
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource, reqparse, marshal_with, fields, abort
+import logger
+from utility import Utility
 
 import json
 from game import Game
@@ -55,8 +57,8 @@ def create_a_game():
   new_data = request.json
 
   #get the players name from the POST data
-  name1 = new_data['player1']
-  name2 = new_data['player2']
+  name1 = new_data.get['player1']
+  name2 = new_data.get['player2']
 
   #create a new game
   result = None 
@@ -84,15 +86,22 @@ def update_a_game(game_id):
   #process the POST data to get the updated game information
   modified_game = request.json
 
-  step = modified_game['step']
-  number = modified_game['number']
-  symbol = modified_game['symbol']
+  #Player change the game board by selecting a number
+  step = modified_game.get('step')
+  symbol = modified_game.get('symbol')
+  number = modified_game.get('number')
+  logger.info("step = " + step)
+  logger.info("symbol = " + symbol)
+  logger.info("number = " + number)
 
-  #update the player_history
+  #update the game board with this game_id in the DB
+  
+  #convert number to (row, col)
+  
+
+  #update the play_history with this game_id in the DB
 
   #check the game board wether there is a winner or not
-
-  #get the player_history from the DB
 
   return json.dumps(default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
