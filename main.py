@@ -44,6 +44,11 @@ def diagonal_sum(df):
     sum_of_diagonal += df.iat[i, i]
   return sum_of_diagonal
 """
+size = 9
+def test():
+  return "The selected number cannot exceed:",  size
+
+print(test())
 
 vec = np.arange(1, 10)
 df = pd.DataFrame(vec.reshape(3, 3))

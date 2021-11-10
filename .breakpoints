@@ -7,6 +7,14 @@
         "version": 1779,
         "index": 0
       }
+    ],
+    "player.py": [
+      {
+        "id": "093ef4be-831c-476e-90c2-f630bf410a41",
+        "line": 33,
+        "version": 2067,
+        "index": 941
+      }
     ]
   }
 }

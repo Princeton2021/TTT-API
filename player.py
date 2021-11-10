@@ -2,14 +2,12 @@ from collection import defaultdict
 
 class Player:
 
-  def __init__(self, name, symbol, value ):
+  def __init__(self, name, symbol):
 
     #symbol = 'x' or 'o' 
-    #value = 1 or 0  #to fill in the cell in the game board dataframe
-    
+
     self.player = name
     self.symbol = symbol
-    self.value = value
     
     #To record players' choice in each step in the game
     self.play_history = defaultdict(tuple)
@@ -31,12 +29,4 @@ class Player:
     #when one plays, the other has to wait
     self.player_turn = player_name1
     self.player_wait = player_name2
- 
-
     
-
-
-
-  
-
-  
