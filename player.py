@@ -28,6 +28,7 @@ class Player:
     self.play_history[step] = (symbol, number)
 
   def set_a_turn(self, player_name1, player_name2):
+    #when one plays, the other has to wait
     self.player_turn = player_name1
     self.player_wait = player_name2
  

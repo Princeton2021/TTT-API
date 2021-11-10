@@ -10,11 +10,11 @@ Map numbers from 1 to nxn to nxn table cell (row,column). Use the (row, column) 
 Example:
 n = 3, nxn = 9
 
-  1,2,3,4,5,6,7,8,9 --> ((0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2))
+1,2,3,4,5,6,7,8,9 --> ((0,0),(0,1),(0,2),(1,0),(1,1),(1,2),(2,0),(2,1),(2,2))
 
     |     |                   |       |
 __1_|__2__|__3__        (0,0) | (0,1) | (0,2)
-    |     |      --->   ---------------------
+    |     |       -->   ---------------------
 __4_|__5__|__6__        (1,0) | (1,1) | (1,2)
     |     |              ---------------------
   7 |  8  |  9          (2,0) | (2,1) | (2,2)
@@ -32,7 +32,7 @@ class Utility:
   
   #Creating an object
   logger=logging.getLogger() 
-  logger.info("Just an information")
+  logger.info("For review")
 
   def mapNumberToTableCellIndex(self,size):
 
