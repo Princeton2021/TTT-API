@@ -1,7 +1,7 @@
 import pandas as pd
 
 class GameBoard:
-
+    
     def __init__(self, size):
 
       #Game size is size x size. size > 2. 
@@ -15,17 +15,19 @@ class GameBoard:
     def printGB(self):
       print(self.boardElements)
 
-    #When player select a cell, the game b
+    #If a player makes a valid selection, the game board will update the value in the corresponing cell
     def update(self, row, col, value):
       self.boardElements.iat[row, col] = value
 
+
+    #Check if the player's selection is valid or not
     def check(self, row, col):
       if self.boardElements.iat[row,col].isnull():
         return None
       else:
         return self.boardElements.iat[row,col]
     
-
+    
     def row_or_col_sum(self, axis_option):
 
       #calculate the sum of row or col in the gameBoard
@@ -47,7 +49,7 @@ class GameBoard:
       print("type(sum_cols)",  type(sum_cols))
       for i in range(sum_rows):
         print()
-        
+
 
     def diagonal_sum(self):
       #calculate the sum of the diagonal in the gameBoard
