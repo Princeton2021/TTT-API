@@ -4,13 +4,18 @@ class GameBoard:
 
     def __init__(self, size):
 
-      self.size = size
+      #Game size is size x size. size > 2. 
+      self.size = size 
+      
+      #Use dataFrame to model the game board. Initialize all elements as null 
       self.boardElements = pd.DataFrame(index=range(self.size),columns=range(self.size))
       self.boardElements.fillna('null')
+
 
     def printGB(self):
       print(self.boardElements)
 
+    #When player select a cell, the game b
     def update(self, row, col, value):
       self.boardElements.iat[row, col] = value
 

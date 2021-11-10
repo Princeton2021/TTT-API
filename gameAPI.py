@@ -19,3 +19,7 @@ app = Flask(__name__)
 def get():
   return jsonify({'games':games})
 
+
+if __name__ == "___main___":
+  app.run(debug=True)
+

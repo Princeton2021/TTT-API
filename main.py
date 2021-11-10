@@ -1,3 +1,6 @@
+
+
+"""
 from gameBoard import GameBoard
 from player import Player
 
@@ -18,5 +21,7 @@ take_turn = 0
 if take_turn == 0: # it is the player1s take_turn
 
   input(name1+" Please enter your choice of move")
+
+"""
 
 
