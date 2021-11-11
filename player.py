@@ -1,3 +1,8 @@
+"""
+Player class
+
+"""
+
 from collection import defaultdict
 
 class Player:

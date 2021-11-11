@@ -1,3 +1,7 @@
+"""
+game class -- players and game board
+
+"""
 import pandas as pd
 from player import Player
 from utility import Utility
@@ -50,8 +54,6 @@ class Game:
       (row, col) = self.mapping(number)
 
       Utility().update(row, col, self.value[symbol], self.gameBoard)
-    
-    return self.gameBoard
 
 
   def check_gameBoard(self, df):
@@ -83,3 +85,4 @@ class Game:
     
   def save_game_to_db(self):
     logger.info("save the game to DB. To be implemented")
+    logger.info("save the game board dataFrame as a string to DB. To be implemented")

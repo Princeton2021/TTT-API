@@ -2,8 +2,16 @@
 
 from flask import Flask, jsonify, request
 from flask_restful import Api, Resource, reqparse, marshal_with, fields, abort
-import logger
+
 from utility import Utility
+import logging
+
+#Create and configure logger
+logging.basicConfig(filename="newfile.log",format='%(asctime)s %(message)s',filemode='w')
+  
+#Creating an object
+logger=logging.getLogger() 
+logger.info("For review")
 
 import json
 from game import Game
@@ -12,7 +20,7 @@ app = Flask(__name__)
 api = Api(app)
 
 #games information should come from DB. To be implemented
-games={{'game_id': "1", 'player1':  "Chi", 'player2': "Joanna"},
+games={ {'game_id': "1", 'player1':  "Chi", 'player2': "Joanna"},
         {'game_id': "2", 'player1': "Bing", 'player2': "Jing" },
         {'game_id': "3", 'player1': "Andrew", 'player2': "Mark"}
 }
@@ -48,11 +56,12 @@ def create_a_game():
   """
   Two way to assign an id to a new game
   #1. Randomly generate a game_id, and make sure the id has not been used
-  #2. Always increament the length of games by 1. Use #2 here
+  #2. Always create the game_id by incrementing the length of games by 1. Use #2 here
+
   """
   game_id = len(games)+1
 
-  #do POST in postman or curl to send the request to the server
+  #do POST with curl or in postman to send the request to the server
   #use the players information from the POST to create a new game
   new_data = request.json
 
@@ -62,14 +71,15 @@ def create_a_game():
 
   #create a new game
   result = None 
-  new_game = Game(game_id, name1, name2, result)
+  new = Game(game_id, name1, name2, result)
+  logger.info("created a new game: "+new)
 
   #add and commit the new game to the DB. To be implemented
-  game = {'game_id': game_id, 'player1': name1, 'player2': name2, "result": result}
+  game={'game_id': game_id, 'player1': name1, 'player2': name2}
+  
   games[game_id] = game
 
   #return jsonify({'created':game})
-
   return jsonify(isError= False,
                     message= "New Game is Created",
                     statusCode= 200,
@@ -80,6 +90,8 @@ def create_a_game():
 @app.route("/api/games/<int:game_id>", methods=['POST'])
 def update_a_game(game_id):
 
+  #POST data have "player, "symbol", "number", "size" information. Use them to update the game board dataframe and check if there is a winner
+  
   #Search for the game_id in the DB, if game_id doesn't exist, abort it
   abort_if_not_exist(game_id)
 
@@ -87,17 +99,24 @@ def update_a_game(game_id):
   modified_game = request.json
 
   #Player change the game board by selecting a number
-  step = modified_game.get('step')
+  player = modified_game.get('player')
+  size = modified_game.get('size') #game size
   symbol = modified_game.get('symbol')
   number = modified_game.get('number')
-  logger.info("step = " + step)
+  
+  logger.info("player = " + player)
   logger.info("symbol = " + symbol)
+  logger.info("number = " + number)
   logger.info("number = " + number)
 
   #update the game board with this game_id in the DB
   
   #convert number to (row, col)
-  
+  mapping = Utility().mapNumberToTableCellIndex(size)
+  (row, col) = mapping(number)
+
+  #get the game board string from DB, map the string back to dataFrame. 
+  #then update the dataFrame with the value in (row, col). Save the new data in DB
 
   #update the play_history with this game_id in the DB
 
@@ -105,15 +124,6 @@ def update_a_game(game_id):
 
   return json.dumps(default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
-if __name__ == "___main___":
-  app.run(debug=True)
-
-
-def json2Game(mutildictObj):
-    game_id = mutildictObj["game_id"]
-    game = Game(game_id, mutildictObj["player1"], mutildictObj["player2"], mutildictObj["row"])
-    return game_id, game
-    #return json.dumps(found, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
 if __name__ == "___main___":
   app.run(debug=True)
